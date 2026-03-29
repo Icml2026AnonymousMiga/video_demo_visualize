@@ -215,30 +215,67 @@
             border-radius: 2px;
         }
 
-        /* ===== Video Carousel Section ===== */
+        /* ===== Video Tab Section ===== */
         .teaser-section {
             padding-top: 20px;
         }
 
-        .carousel-container {
-            position: relative;
+        .video-tabs-container {
             max-width: 960px;
             margin: 0 auto;
         }
 
-        .carousel-track {
-            overflow: hidden;
-            border-radius: 20px;
-        }
-
-        .carousel-slides {
+        /* Tab Buttons */
+        .video-tab-buttons {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
         }
 
-        .carousel-slide {
-            min-width: 100%;
-            flex-shrink: 0;
+        .video-tab-btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: rgba(26, 26, 62, 0.6);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .video-tab-btn:hover {
+            border-color: rgba(108, 99, 255, 0.5);
+            color: var(--text-primary);
+            background: rgba(108, 99, 255, 0.1);
+        }
+
+        .video-tab-btn.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* Tab Panels */
+        .video-tab-panel {
+            display: none;
+            animation: fadeInTab 0.4s ease;
+        }
+
+        .video-tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .video-card {
@@ -249,20 +286,12 @@
             box-shadow: var(--card-shadow);
         }
 
-        .video-wrapper {
-            position: relative;
+        .video-card video {
+            display: block;
             width: 100%;
-            padding-top: 57.69%; /* 480/832 ≈ 0.5769 — matches actual video aspect ratio */
+            height: auto;
+            border-radius: 20px 20px 0 0;
             background: #000;
-        }
-
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
         }
 
         .video-info {
@@ -300,68 +329,6 @@
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
-        }
-
-        /* Carousel Navigation Arrows */
-        .carousel-btn {
-            position: absolute;
-            top: calc(50% - 40px);
-            transform: translateY(-50%);
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            background: rgba(26, 26, 62, 0.85);
-            backdrop-filter: blur(10px);
-            color: var(--text-primary);
-            font-size: 1.3rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .carousel-btn:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-50%) scale(1.08);
-        }
-
-        .carousel-btn-prev {
-            left: -26px;
-        }
-
-        .carousel-btn-next {
-            right: -26px;
-        }
-
-        /* Carousel Indicator Dots */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 24px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
-            width: 28px;
-            border-radius: 5px;
         }
 
         /* ===== Abstract Section ===== */
@@ -641,71 +608,51 @@
             </p>
         </div>
 
-        <div class="carousel-container fade-in">
-            <!-- Left Arrow -->
-            <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev()" aria-label="Previous video">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
+        <div class="video-tabs-container fade-in">
+            <!-- Tab Buttons -->
+            <div class="video-tab-buttons">
+                <button class="video-tab-btn active" onclick="switchTab(0)">🐕 Corgi Dog</button>
+                <button class="video-tab-btn" onclick="switchTab(1)">🐢 Sea Turtle</button>
+                <button class="video-tab-btn" onclick="switchTab(2)">🦸 Iron Man</button>
+            </div>
 
-            <!-- Right Arrow -->
-            <button class="carousel-btn carousel-btn-next" onclick="carouselNext()" aria-label="Next video">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
-
-            <div class="carousel-track">
-                <div class="carousel-slides" id="carouselSlides">
-                    <!-- Video 1: Corgi Dog -->
-                    <div class="carousel-slide">
-                        <div class="video-card">
-                            <div class="video-wrapper">
-                                <video loop muted playsinline autoplay controls>
-                                    <source src="3_corge_dog.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-info">
-                                <div class="prompt-label">Prompt</div>
-                                <p class="prompt-text">A fluffy Corgi dog trots happily across a lush green lawn. Its short legs and wagging tail convey pure delight as it explores the grassy expanse, a charming and energetic display of canine joy.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 2: Sea Turtle -->
-                    <div class="carousel-slide">
-                        <div class="video-card">
-                            <div class="video-wrapper">
-                                <video loop muted playsinline controls>
-                                    <source src="2_sea_turtle.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-info">
-                                <div class="prompt-label">Prompt</div>
-                                <p class="prompt-text">A majestic sea turtle glides effortlessly through a vibrant, colorful coral reef. The camera follows its slow, deliberate movements, revealing the intricate patterns of the reef and the calm, clear blue water surrounding it, a tranquil underwater scene.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 3: Iron Man -->
-                    <div class="carousel-slide">
-                        <div class="video-card">
-                            <div class="video-wrapper">
-                                <video loop muted playsinline controls>
-                                    <source src="1_iron_man.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-info">
-                                <div class="prompt-label">Prompt</div>
-                                <p class="prompt-text">A hyperrealistic rendering of Iron Man soaring effortlessly through a vast, cloud-filled sky. The camera follows him smoothly as he glides, showcasing the intricate details of his suit against the dynamic, swirling clouds, evoking a sense of powerful, serene flight.</p>
-                            </div>
-                        </div>
+            <!-- Video 1: Corgi Dog -->
+            <div class="video-tab-panel active" data-index="0">
+                <div class="video-card">
+                    <video loop muted playsinline autoplay controls>
+                        <source src="3_corge_dog.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <div class="prompt-label">Prompt</div>
+                        <p class="prompt-text">A fluffy Corgi dog trots happily across a lush green lawn. Its short legs and wagging tail convey pure delight as it explores the grassy expanse, a charming and energetic display of canine joy.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Carousel Dots -->
-            <div class="carousel-dots">
-                <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-                <div class="carousel-dot" onclick="goToSlide(1)"></div>
-                <div class="carousel-dot" onclick="goToSlide(2)"></div>
+            <!-- Video 2: Sea Turtle -->
+            <div class="video-tab-panel" data-index="1">
+                <div class="video-card">
+                    <video loop muted playsinline controls>
+                        <source src="2_sea_turtle.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <div class="prompt-label">Prompt</div>
+                        <p class="prompt-text">A majestic sea turtle glides effortlessly through a vibrant, colorful coral reef. The camera follows its slow, deliberate movements, revealing the intricate patterns of the reef and the calm, clear blue water surrounding it, a tranquil underwater scene.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3: Iron Man -->
+            <div class="video-tab-panel" data-index="2">
+                <div class="video-card">
+                    <video loop muted playsinline controls>
+                        <source src="1_iron_man.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <div class="prompt-label">Prompt</div>
+                        <p class="prompt-text">A hyperrealistic rendering of Iron Man soaring effortlessly through a vast, cloud-filled sky. The camera follows him smoothly as he glides, showcasing the intricate details of his suit against the dynamic, swirling clouds, evoking a sense of powerful, serene flight.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -781,66 +728,25 @@
 </footer>
 
 <script>
-// ===== Video Carousel =====
-let currentSlide = 0;
-const totalSlides = 3;
-const slides = document.getElementById('carouselSlides');
-const dots = document.querySelectorAll('.carousel-dot');
-const videos = document.querySelectorAll('.carousel-slide video');
+// ===== Video Tab Switching =====
+const tabBtns = document.querySelectorAll('.video-tab-btn');
+const tabPanels = document.querySelectorAll('.video-tab-panel');
+const tabVideos = document.querySelectorAll('.video-tab-panel video');
 
-function updateCarousel() {
-    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-    });
-    // Pause all videos, play the current one
-    videos.forEach((video, i) => {
-        if (i === currentSlide) {
+function switchTab(index) {
+    // Update buttons
+    tabBtns.forEach((btn, i) => btn.classList.toggle('active', i === index));
+    // Update panels
+    tabPanels.forEach((panel, i) => panel.classList.toggle('active', i === index));
+    // Pause all, play current
+    tabVideos.forEach((video, i) => {
+        if (i === index) {
             video.play().catch(() => {});
         } else {
             video.pause();
         }
     });
 }
-
-function carouselNext() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-}
-
-function carouselPrev() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-}
-
-function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
-}
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') carouselPrev();
-    if (e.key === 'ArrowRight') carouselNext();
-});
-
-// Touch swipe support
-let touchStartX = 0;
-let touchEndX = 0;
-const carouselTrack = document.querySelector('.carousel-track');
-
-carouselTrack.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
-
-carouselTrack.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-        if (diff > 0) carouselNext();
-        else carouselPrev();
-    }
-}, { passive: true });
 
 // ===== Particle Animation =====
 (function() {
