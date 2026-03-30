@@ -6,8 +6,7 @@
     <title>MIGA: Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0a0a1a;
@@ -18,9 +17,7 @@
             --accent: #6c63ff;
             --accent-glow: rgba(108, 99, 255, 0.3);
             --accent2: #00d2ff;
-            --accent3: #ff6b9d;
             --gradient-1: linear-gradient(135deg, #6c63ff, #00d2ff);
-            --gradient-2: linear-gradient(135deg, #ff6b9d, #ffa726);
             --border-color: rgba(108, 99, 255, 0.2);
             --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
@@ -43,26 +40,9 @@
             overflow-x: hidden;
         }
 
-        /* ===== Animated Background ===== */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .bg-animation canvas {
-            width: 100%;
-            height: 100%;
-        }
-
         /* ===== Hero Section ===== */
         .hero {
             position: relative;
-            min-height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -78,8 +58,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(ellipse at 30% 20%, rgba(108, 99, 255, 0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 80%, rgba(0, 210, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 50%, rgba(255, 107, 157, 0.05) 0%, transparent 60%);
+                        radial-gradient(ellipse at 70% 80%, rgba(0, 210, 255, 0.1) 0%, transparent 50%);
             animation: heroGlow 8s ease-in-out infinite alternate;
             z-index: 0;
         }
@@ -96,62 +75,25 @@
             max-width: 960px;
         }
 
-        .paper-badge {
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 50px;
-            background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(0, 210, 255, 0.2));
-            border: 1px solid var(--border-color);
-            color: var(--accent2);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-        }
-
         .paper-title {
             font-size: 2.6rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
             background: linear-gradient(135deg, #ffffff, #c0c0ff, #00d2ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .paper-title .highlight {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .paper-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 28px;
-            font-weight: 300;
-        }
-
         .authors {
             font-size: 1.15rem;
             color: var(--text-secondary);
-            margin-bottom: 12px;
         }
 
         .authors .author-name {
             color: var(--text-primary);
             font-weight: 500;
-        }
-
-        .affiliation {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            margin-bottom: 28px;
         }
 
         /* ===== Section Styles ===== */
@@ -189,18 +131,6 @@
             border: 1px solid rgba(0, 210, 255, 0.2);
         }
 
-        .tag-purple {
-            background: rgba(108, 99, 255, 0.1);
-            color: var(--accent);
-            border: 1px solid rgba(108, 99, 255, 0.2);
-        }
-
-        .tag-pink {
-            background: rgba(255, 107, 157, 0.1);
-            color: var(--accent3);
-            border: 1px solid rgba(255, 107, 157, 0.2);
-        }
-
         .section-title {
             font-size: 2.2rem;
             font-weight: 700;
@@ -225,7 +155,6 @@
             margin: 0 auto;
         }
 
-        /* Tab Buttons */
         .video-tab-buttons {
             display: flex;
             justify-content: center;
@@ -263,7 +192,6 @@
             box-shadow: 0 4px 15px var(--accent-glow);
         }
 
-        /* Tab Panels */
         .video-tab-panel {
             display: none;
             animation: fadeInTab 0.4s ease;
@@ -331,106 +259,6 @@
             50% { opacity: 0.4; }
         }
 
-        /* ===== Abstract Section ===== */
-        .abstract-section {
-            background: linear-gradient(180deg, transparent, rgba(108, 99, 255, 0.03), transparent);
-        }
-
-        .abstract-content {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 36px 40px;
-            background: rgba(26, 26, 62, 0.6);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-            font-size: 1.02rem;
-            color: var(--text-secondary);
-            line-height: 1.85;
-            text-align: justify;
-        }
-
-        .abstract-content strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .abstract-content .method-name {
-            color: var(--accent2);
-            font-weight: 700;
-        }
-
-        /* ===== Method Section ===== */
-        .method-section {
-            padding-bottom: 80px;
-        }
-
-        .method-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 16px;
-        }
-
-        .method-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .method-card:hover {
-            border-color: rgba(108, 99, 255, 0.4);
-            box-shadow: 0 12px 40px rgba(108, 99, 255, 0.15);
-        }
-
-        .method-card-header {
-            padding: 20px 28px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .method-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .icon-blue {
-            background: rgba(0, 210, 255, 0.15);
-            color: var(--accent2);
-        }
-
-        .icon-pink {
-            background: rgba(255, 107, 157, 0.15);
-            color: var(--accent3);
-        }
-
-        .method-card-header h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .method-card-header p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-
-        .method-card img {
-            width: 100%;
-            padding: 20px 28px 24px;
-            display: block;
-        }
-
         /* ===== Footer ===== */
         footer {
             position: relative;
@@ -454,56 +282,6 @@
             transform: translateY(0);
         }
 
-        /* ===== Navigation Dots ===== */
-        .nav-dots {
-            position: fixed;
-            right: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .nav-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-dot.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .nav-dot::after {
-            content: attr(data-label);
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            white-space: nowrap;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            background: var(--bg-card);
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
-        .nav-dot:hover::after {
-            opacity: 1;
-        }
-
         /* ===== Responsive ===== */
         @media (max-width: 900px) {
             .paper-title {
@@ -512,37 +290,14 @@
             .section-title {
                 font-size: 1.6rem;
             }
-            .nav-dots {
-                display: none;
-            }
-            .carousel-btn-prev {
-                left: 10px;
-            }
-            .carousel-btn-next {
-                right: 10px;
-            }
         }
 
         @media (max-width: 600px) {
             .hero {
                 padding: 60px 16px 30px;
             }
-            .abstract-content {
-                padding: 24px 20px;
-            }
             .paper-title {
                 font-size: 1.5rem;
-            }
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            .carousel-btn-prev {
-                left: 6px;
-            }
-            .carousel-btn-next {
-                right: 6px;
             }
         }
 
@@ -572,25 +327,13 @@
 <!-- Particle Background -->
 <canvas id="particles-canvas"></canvas>
 
-<!-- Navigation Dots -->
-<nav class="nav-dots">
-    <div class="nav-dot active" data-label="Home" onclick="scrollToSection('hero')"></div>
-    <div class="nav-dot" data-label="Videos" onclick="scrollToSection('teaser')"></div>
-    <div class="nav-dot" data-label="Abstract" onclick="scrollToSection('abstract')"></div>
-    <div class="nav-dot" data-label="Method" onclick="scrollToSection('method')"></div>
-</nav>
-
 <!-- Hero Section -->
 <section class="hero" id="hero">
     <div class="hero-content">
-        <div class="paper-badge">ICML 2026 Under Review</div>
         <h1 class="paper-title">Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos</h1>
-        <p class="paper-subtitle">A novel approach to infinite-length video generation with training-inference alignment and dual consistency enhancement</p>
-
         <div class="authors">
             <span class="author-name">Anonymous Authors</span>
         </div>
-        <p class="affiliation">Anonymous Institution &nbsp;|&nbsp; Anonymous Submission</p>
     </div>
 </section>
 
@@ -603,9 +346,6 @@
             <span class="section-tag tag-blue">Demo</span>
             <h2 class="section-title">Generated Long Video Samples</h2>
             <div class="section-divider"></div>
-            <p style="color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
-                MIGA generates high-quality, temporally consistent long videos with infinite frames using only constant memory.
-            </p>
         </div>
 
         <div class="video-tabs-container fade-in">
@@ -658,72 +398,10 @@
     </div>
 </section>
 
-<div class="glow-line"></div>
-
-<!-- Abstract Section -->
-<section class="abstract-section" id="abstract">
-    <div class="container">
-        <div class="section-header fade-in">
-            <span class="section-tag tag-purple">Overview</span>
-            <h2 class="section-title">Abstract</h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <div class="abstract-content fade-in">
-            Without incurring significant computational overhead, <strong>train-free long video generation</strong> aims to enable foundation video generation models to produce longer videos. Frame-level autoregressive frameworks, e.g., FIFO-diffusion, offer the advantage of generating infinitely long videos with constant memory consumption. However, the mismatch between training and inference, coupled with the challenge of maintaining long-term consistency, limits the effective utilization of foundation models.
-            <br><br>
-            To mitigate these concerns, we propose <span class="method-name">MIGA</span>, a novel infinite-frame long video generation method. Firstly, we propose an effective <strong>two-stage alignment mechanism</strong> that mitigates the training-inference gap by reducing the excessive noise span fed to the model. We then introduce an innovative <strong>dual consistency enhancement mechanism</strong>, where the self-reflection approach corrects early high-noise frames and the long-range frame guidance approach leverages later low-noise frames with broad coverage to steer generation, jointly improving temporal consistency. Extensive experiments on <strong>VBench</strong> and <strong>NarrLV</strong> demonstrate the state-of-the-art performance of MIGA.
-        </div>
-    </div>
-</section>
-
-<div class="glow-line"></div>
-
-<!-- Method Section -->
-<section class="method-section" id="method">
-    <div class="container">
-        <div class="section-header fade-in">
-            <span class="section-tag tag-pink">Architecture</span>
-            <h2 class="section-title">Method</h2>
-            <div class="section-divider"></div>
-            <p style="color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
-                MIGA introduces two core modules to enhance train-free infinite-frame video generation.
-            </p>
-        </div>
-
-        <div class="method-grid">
-            <!-- TTA Module -->
-            <div class="method-card fade-in">
-                <div class="method-card-header">
-                    <div class="method-icon icon-blue">🔗</div>
-                    <div>
-                        <h3>Two-Stage Alignment (TTA)</h3>
-                        <p>Bridging the training-inference gap by reducing excessive noise span</p>
-                    </div>
-                </div>
-                <img src="method_tta.png" alt="Two-Stage Alignment Mechanism" loading="lazy">
-            </div>
-
-            <!-- DCE Module -->
-            <div class="method-card fade-in">
-                <div class="method-card-header">
-                    <div class="method-icon icon-pink">🔄</div>
-                    <div>
-                        <h3>Dual Consistency Enhancement (DCE)</h3>
-                        <p>Self-reflection and long-range guidance for temporal consistency</p>
-                    </div>
-                </div>
-                <img src="method_dce.png" alt="Dual Consistency Enhancement Mechanism" loading="lazy">
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Footer -->
 <footer>
     <div class="container">
-        <p>Anonymous Submission to ICML 2026</p>
-        <p style="margin-top: 8px; font-size: 0.8rem; color: rgba(255,255,255,0.3);">This page is for anonymous review purposes only.</p>
+        <p>Anonymous Submission</p>
     </div>
 </footer>
 
@@ -734,11 +412,8 @@ const tabPanels = document.querySelectorAll('.video-tab-panel');
 const tabVideos = document.querySelectorAll('.video-tab-panel video');
 
 function switchTab(index) {
-    // Update buttons
     tabBtns.forEach((btn, i) => btn.classList.toggle('active', i === index));
-    // Update panels
     tabPanels.forEach((panel, i) => panel.classList.toggle('active', i === index));
-    // Pause all, play current
     tabVideos.forEach((video, i) => {
         if (i === index) {
             video.play().catch(() => {});
@@ -794,7 +469,6 @@ function switchTab(index) {
             ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
             ctx.fill();
 
-            // Draw connections
             for (let j = i + 1; j < particles.length; j++) {
                 const p2 = particles[j];
                 const dx = p.x - p2.x;
@@ -829,28 +503,6 @@ const scrollObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-in').forEach(el => scrollObserver.observe(el));
-
-// ===== Navigation Dots =====
-function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
-
-const sectionIds = ['hero', 'teaser', 'abstract', 'method'];
-const navDots = document.querySelectorAll('.nav-dot');
-
-window.addEventListener('scroll', () => {
-    let current = 0;
-    sectionIds.forEach((id, i) => {
-        const section = document.getElementById(id);
-        if (section) {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= window.innerHeight / 2) current = i;
-        }
-    });
-    navDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === current);
-    });
-});
 </script>
 
 </body>
